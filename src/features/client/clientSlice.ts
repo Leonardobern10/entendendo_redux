@@ -50,7 +50,7 @@ const clientSlice = createSlice({
       })
       .addCase(getAllClientThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.clients = [...action.payload];
+        state.clients = action.payload;
       })
 
       // GetClientsById
@@ -91,13 +91,10 @@ const clientSlice = createSlice({
       })
       .addCase(updateClientThunk.fulfilled, (state, action) => {
         state.loading = false;
-        const targetIndex = state.clients.findIndex(
-          (el) => el.id === action.meta.arg.id,
+
+        state.clients = state.clients.map((client) =>
+          client.id === action.payload.id ? action.payload : client,
         );
-        state.clients = [
-          ...state.clients,
-          (state.clients[targetIndex] = action.payload),
-        ];
       });
   },
 });

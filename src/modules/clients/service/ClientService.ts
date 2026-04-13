@@ -36,5 +36,5 @@ export const removeClientService = async (id: string): Promise<void> => {
 export const updateClientService = async (
   dto: UpdateClientDTO,
 ): Promise<Client> => {
-  return await updateClient(dto.id, dto.newData.name, dto.newData.email);
+  return await updateClient(dto.id, dto.name, dto.email);
 };

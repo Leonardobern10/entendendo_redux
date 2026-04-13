@@ -35,6 +35,9 @@ export default function ClientScreen() {
                 id={item.id}
                 name={item.name}
                 email={item.email}
+                setNewClient={setNewClient}
+                updateClient={updateClient}
+                newClient={newClient}
               />
             )}
             keyExtractor={(item) => item.id}

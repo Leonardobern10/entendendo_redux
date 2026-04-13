@@ -1,11 +1,11 @@
-import RegisterClientDTO from "./RegisterClientDTO";
-
 export default class UpdateClientDTO {
   public readonly id: string;
-  public readonly newData: RegisterClientDTO;
+  public readonly name: string;
+  public readonly email: string;
 
-  constructor(id: string, newData: RegisterClientDTO) {
+  constructor(id: string, name: string, email: string) {
     this.id = id;
-    this.newData = newData;
+    this.name = name;
+    this.email = email;
   }
 }

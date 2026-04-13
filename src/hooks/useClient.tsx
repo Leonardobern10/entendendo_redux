@@ -31,7 +31,6 @@ export const useClients = () => {
       await dispatch(saveClientThunk(clientValidated));
       Alert.alert("SUCESSO", "Cliente cadastrado com sucesso!");
       setNewClient({ name: "", email: "" });
-      dispatch(getAllClientThunk());
     } catch (error) {
       console.error(error);
       if (error instanceof ValidationError) {
@@ -54,9 +53,10 @@ export const useClients = () => {
 
   const updateClient = async (id: string, dto: RegisterClientDTO) => {
     try {
-      const updateDto = new UpdateClientDTO(id, dto);
+      const updateDto = new UpdateClientDTO(id, dto.name, dto.email);
       await registerClinetSchema.validate(updateDto);
       await dispatch(updateClientThunk(updateDto));
+      setNewClient({ name: "", email: "" });
       Alert.alert("SUCESSO", "Cliente atualizado com sucesso!");
     } catch (error) {
       console.error(error);
@@ -69,9 +69,9 @@ export const useClients = () => {
   };
 
   useEffect(() => {
-    const get = async () => {
+    async function get() {
       await dispatch(getAllClientThunk());
-    };
+    }
     get();
   }, []);
 

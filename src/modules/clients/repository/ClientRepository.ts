@@ -26,6 +26,7 @@ export const getAllClients = async (): Promise<Client[]> => {
   const db = await database();
   const allClients = await db?.getAllAsync<Client>(`SELECT * FROM clients`);
   if (!allClients) throw new Error("Erro on get all clients.");
+  console.log("Consulta ao banco chamada!");
   return allClients;
 };
 

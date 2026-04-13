@@ -1,7 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useState } from "react";
 import { Modal, Pressable, View } from "react-native";
-import { useClients } from "../hooks/useClient";
+import RegisterClientDTO from "../modules/clients/model/dto/RegisterClientDTO";
 import { styleGlobal } from "../styles/styles";
 import FormClient from "./FormClient";
 import HeaderItem from "./HeaderItem";
@@ -13,6 +13,9 @@ type ClientItemProps = {
   name: string;
   email: string;
   remove: () => void;
+  newClient: RegisterClientDTO;
+  setNewClient: (dto: RegisterClientDTO) => void;
+  updateClient: (id: string, dto: RegisterClientDTO) => void;
 };
 
 export default function ClientItem({
@@ -20,9 +23,11 @@ export default function ClientItem({
   name,
   email,
   remove,
+  newClient,
+  setNewClient,
+  updateClient,
 }: ClientItemProps) {
   const [modal, setModal] = useState(false);
-  const { newClient, setNewClient, updateClient } = useClients();
 
   return (
     <View style={styleGlobal.containerItem}>
@@ -31,7 +36,15 @@ export default function ClientItem({
       <View style={{ alignSelf: "flex-end" }}>
         <TextContent label="Email:" value={email} />
       </View>
-      <View>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          columnGap: 10,
+        }}
+      >
         <Pressable onPress={remove}>
           <FontAwesome name="trash-o" size={24} color="#555" />
         </Pressable>
@@ -49,7 +62,9 @@ export default function ClientItem({
         <FormClient
           newClient={newClient}
           setNewClient={setNewClient}
-          saveClient={() => updateClient(id, { name, email })}
+          saveClient={() =>
+            updateClient(id, { name: newClient.name, email: newClient.email })
+          }
         />
       </Modal>
     </View>
