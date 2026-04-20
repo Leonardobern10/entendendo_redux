@@ -5,9 +5,10 @@ export default async function runMigrations() {
   if (!db) throw new Error("Erro no DB");
   await db.execAsync(`PRAGMA foreign_keys = ON;`);
   await db.execAsync(`
-    DROP TABLE products;
-    DROP TABLE clients;
-    DROP TABLE orders;
+DROP TABLE IF EXISTS products_orders;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS clients;
 
     CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,9 +33,9 @@ export default async function runMigrations() {
 
     CREATE TABLE IF NOT EXISTS products_orders (
       product_id INTEGER,
-      order_id TEXT,
+      order_id INTEGER,
       quantity INTEGER NOT NULL DEFAULT 0 CHECK (quantity >= 0),
-      amount NUMERIC (10, 2) NOT NULL DEFAULT 0.0 CHECK (amount >= 0.0),
+      price_at_moment NUMERIC (10, 2) NOT NULL DEFAULT 0.0 CHECK (price_at_moment >= 0.0),
       CONSTRAINT product_fk FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT order_fk FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT products_orders_ok PRIMARY KEY (product_id, order_id)

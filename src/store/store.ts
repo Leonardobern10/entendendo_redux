@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { ClientReducer } from "../features/client/clientSlice";
+import { OrderReducer } from "../features/order/orderSlice";
 import { ProductReducer } from "../features/product/productSlice";
 
 export const store = configureStore({
   reducer: {
     product: ProductReducer,
     client: ClientReducer,
+    order: OrderReducer,
   },
 });
 

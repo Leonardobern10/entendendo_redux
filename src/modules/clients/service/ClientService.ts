@@ -25,11 +25,11 @@ export const getAllClientsService = async (): Promise<Client[]> => {
   return await getAllClients();
 };
 
-export const getClientByIdService = async (id: string): Promise<Client> => {
+export const getClientByIdService = async (id: number): Promise<Client> => {
   return await getClientByID(id);
 };
 
-export const removeClientService = async (id: string): Promise<void> => {
+export const removeClientService = async (id: number): Promise<void> => {
   return await removeClient(id);
 };
 

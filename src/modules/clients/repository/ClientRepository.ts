@@ -30,7 +30,7 @@ export const getAllClients = async (): Promise<Client[]> => {
   return allClients;
 };
 
-export const getClientByID = async (id: string): Promise<Client> => {
+export const getClientByID = async (id: number): Promise<Client> => {
   const db = await database();
   const client = await db?.getFirstAsync<Client>(
     `SELECT * FROM clients WHERE id = ?`,
@@ -40,13 +40,13 @@ export const getClientByID = async (id: string): Promise<Client> => {
   return client;
 };
 
-export const removeClient = async (id: string): Promise<void> => {
+export const removeClient = async (id: number): Promise<void> => {
   const db = await database();
   await db?.runAsync(`DELETE FROM clients WHERE id = ?`, [id]);
 };
 
 export const updateClient = async (
-  id: string,
+  id: number,
   newName: string,
   newEmail: string,
 ): Promise<Client> => {

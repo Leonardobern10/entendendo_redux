@@ -10,7 +10,6 @@ export default function ClientScreen() {
     setNewClient,
     clients,
     loading,
-    error,
     saveClient,
     removeClient,
     updateClient,
@@ -40,7 +39,7 @@ export default function ClientScreen() {
                 newClient={newClient}
               />
             )}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
           />
         )}
       </View>

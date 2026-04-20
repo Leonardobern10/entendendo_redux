@@ -32,7 +32,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="products"
+        name="products/index"
         options={{
           title: "Produtos",
           tabBarIcon: ({ color }) => (

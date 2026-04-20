@@ -3,18 +3,18 @@ import { StyleSheet, Text } from "react-native";
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    fontSize: 20,
+    fontSize: 15,
     alignSelf: "flex-end",
     color: "rgba(91, 88, 88, 0.73)",
   },
 });
 
-type TextContent = {
+type TextContentProps = {
   label: string;
   value: string | number;
 };
 
-export default function TextContent({ label, value }: TextContent) {
+export default function TextContent({ label, value }: TextContentProps) {
   return (
     <Text style={styles.container}>
       {label} {value}

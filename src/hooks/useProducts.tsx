@@ -34,7 +34,7 @@ export const useProducts = () => {
   useEffect(() => {
     dispatch(getAllProductsThunk());
     setNewProduct({ name: "", quantity: "", price: "" });
-  }, []);
+  }, [dispatch]);
 
   return { products, newProduct, setNewProduct, createProduct, error };
 };

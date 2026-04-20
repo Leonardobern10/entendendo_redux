@@ -22,14 +22,14 @@ export const getAllClientThunk = createAsyncThunk("client/getAll", async () => {
 
 export const getClientByIdThunk = createAsyncThunk(
   "client/getClientById",
-  async (id: string) => {
+  async (id: number) => {
     return await getClientByIdService(id);
   },
 );
 
 export const removeClientThunk = createAsyncThunk(
   "client/removeClient",
-  async (id: string) => {
+  async (id: number) => {
     return await removeClientService(id);
   },
 );

@@ -41,7 +41,7 @@ export const useClients = () => {
     }
   };
 
-  const removeClient = async (id: string) => {
+  const removeClient = async (id: number) => {
     try {
       await dispatch(removeClientThunk(id));
       Alert.alert("SUCESSO", "Cliente removido com sucesso!");
@@ -51,7 +51,7 @@ export const useClients = () => {
     }
   };
 
-  const updateClient = async (id: string, dto: RegisterClientDTO) => {
+  const updateClient = async (id: number, dto: RegisterClientDTO) => {
     try {
       const updateDto = new UpdateClientDTO(id, dto.name, dto.email);
       await registerClinetSchema.validate(updateDto);
@@ -73,7 +73,7 @@ export const useClients = () => {
       await dispatch(getAllClientThunk());
     }
     get();
-  }, []);
+  }, [dispatch]);
 
   return {
     newClient,

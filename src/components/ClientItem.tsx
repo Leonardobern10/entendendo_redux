@@ -6,16 +6,15 @@ import { styleGlobal } from "../styles/styles";
 import FormClient from "./FormClient";
 import HeaderItem from "./HeaderItem";
 import HorizontalLine from "./HorizontalLine";
-import TextContent from "./TextContent";
 
 type ClientItemProps = {
-  id: string;
+  id: number;
   name: string;
   email: string;
   remove: () => void;
   newClient: RegisterClientDTO;
   setNewClient: (dto: RegisterClientDTO) => void;
-  updateClient: (id: string, dto: RegisterClientDTO) => void;
+  updateClient: (id: number, dto: RegisterClientDTO) => void;
 };
 
 export default function ClientItem({
@@ -31,11 +30,8 @@ export default function ClientItem({
 
   return (
     <View style={styleGlobal.containerItem}>
-      <HeaderItem name={name} id={id} />
+      <HeaderItem name={name} id={id} email={email} />
       <HorizontalLine />
-      <View style={{ alignSelf: "flex-end" }}>
-        <TextContent label="Email:" value={email} />
-      </View>
       <View
         style={{
           display: "flex",
@@ -43,6 +39,7 @@ export default function ClientItem({
           justifyContent: "flex-start",
           alignItems: "center",
           columnGap: 10,
+          alignSelf: "flex-start",
         }}
       >
         <Pressable onPress={remove}>
